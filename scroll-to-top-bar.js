@@ -14,15 +14,15 @@ scrollBar.addEventListener('mouseleave', (event) => {
   scrollBar.classList.remove('over');
 });
 
-let savedPageYOffset = 0;
+let prevY = 0;
 
 scrollBar.addEventListener('click', (event) => {
   let top;
-  if (window.pageYOffset === 0) {
-    if (savedPageYOffset === 0) return;
-    top = savedPageYOffset;
+  if (window.scrollY === 0) {
+    if (prevY === 0) return;
+    top = prevY;
   } else {
-    savedPageYOffset = window.pageYOffset;
+    prevY = window.scrollY;
     top = 0;
   }
   window.scrollTo({
