@@ -1,22 +1,22 @@
-'use strict';
+"use strict";
 
 const scrollBar = createScrollBar();
 document.body.append(scrollBar);
 
-window.addEventListener('mouseover', (event) => {
+window.addEventListener("mouseover", (event) => {
   if (event.target !== document.documentElement) return;
   if (event.clientX >= document.documentElement.clientWidth) {
-    scrollBar.classList.add('over');
+    scrollBar.classList.add("over");
   }
 });
 
-scrollBar.addEventListener('mouseleave', (event) => {
-  scrollBar.classList.remove('over');
+scrollBar.addEventListener("mouseleave", (event) => {
+  scrollBar.classList.remove("over");
 });
 
 let prevY = 0;
 
-scrollBar.addEventListener('click', (event) => {
+scrollBar.addEventListener("click", (event) => {
   let top;
   if (window.scrollY === 0) {
     if (prevY === 0) return;
@@ -32,18 +32,18 @@ scrollBar.addEventListener('click', (event) => {
 
 chrome.storage.local.get({
   width: 115,
-  color: '#dce2e8'
+  color: "#dce2e8"
 }, (options) => {
-  scrollBar.style.setProperty('--width', options.width + 'px');
-  scrollBar.style.setProperty('--color', options.color);
+  scrollBar.style.setProperty("--width", options.width + "px");
+  scrollBar.style.setProperty("--color", options.color);
 });
 
 function createScrollBar() {
-  const scrollBar = document.createElement('div');
+  const scrollBar = document.createElement("div");
   const shadowRoot = scrollBar.attachShadow({
-    mode: 'closed'
+    mode: "closed"
   });
-  const style = document.createElement('style');
+  const style = document.createElement("style");
   style.textContent = `
     :host {
       background: transparent none repeat scroll 0% 0% !important;
