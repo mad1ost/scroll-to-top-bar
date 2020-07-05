@@ -3,7 +3,7 @@
 const scrollBar = createScrollBar();
 document.body.append(scrollBar);
 
-window.addEventListener("mouseover", (event) => {
+document.addEventListener("mouseover", (event) => {
   if (event.target !== document.documentElement) return;
   if (event.clientX >= document.documentElement.clientWidth) {
     scrollBar.classList.add("over");
@@ -66,6 +66,6 @@ function createScrollBar() {
       background-color: var(--color, #dce2e8) !important;
       z-index: 9999 !important;
     }`;
-  shadowRoot.appendChild(style);
+  shadowRoot.append(style);
   return scrollBar;
 }
