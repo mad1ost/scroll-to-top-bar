@@ -50,7 +50,7 @@ function createScrollBar() {
       border-radius: 0 !important;
       border-style: none !important;
       box-shadow: none !important;
-      cursor: pointer !important;
+      cursor: auto !important;
       height: 100% !important;
       margin: 0 !important;
       opacity: 0.5 !important;
@@ -64,6 +64,7 @@ function createScrollBar() {
     }
     :host(.over) {
       background-color: var(--color, #dce2e8) !important;
+      cursor: pointer !important;
       z-index: 9999 !important;
     }`;
   shadowRoot.append(style);
