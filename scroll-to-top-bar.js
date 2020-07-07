@@ -7,16 +7,18 @@ document.addEventListener('mouseover', (event) => {
   if (event.target !== document.documentElement) return;
   if (event.clientX >= document.documentElement.clientWidth) {
     scrollBar.classList.add('over');
+    scrollBar.addEventListener('click', onClick);
   }
 });
 
 scrollBar.addEventListener('mouseleave', (event) => {
   scrollBar.classList.remove('over');
+  scrollBar.removeEventListener('click', onClick);
 });
 
 let prevY = 0;
 
-scrollBar.addEventListener('click', (event) => {
+function onClick() {
   let top;
   if (window.scrollY === 0) {
     if (prevY === 0) return;
@@ -28,7 +30,7 @@ scrollBar.addEventListener('click', (event) => {
   window.scrollTo({
     top: top
   });
-});
+}
 
 chrome.storage.local.get({
   width: 115,
