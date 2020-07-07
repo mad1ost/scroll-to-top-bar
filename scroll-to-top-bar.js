@@ -1,22 +1,24 @@
-"use strict";
+'use strict';
 
 const scrollBar = createScrollBar();
 document.body.append(scrollBar);
 
-window.addEventListener("mouseover", (event) => {
+document.addEventListener('mouseover', (event) => {
   if (event.target !== document.documentElement) return;
   if (event.clientX >= document.documentElement.clientWidth) {
-    scrollBar.classList.add("over");
+    scrollBar.classList.add('over');
+    scrollBar.addEventListener('click', onClick);
   }
 });
 
-scrollBar.addEventListener("mouseleave", (event) => {
-  scrollBar.classList.remove("over");
+scrollBar.addEventListener('mouseleave', (event) => {
+  scrollBar.classList.remove('over');
+  scrollBar.removeEventListener('click', onClick);
 });
 
 let prevY = 0;
 
-scrollBar.addEventListener("click", (event) => {
+function onClick() {
   let top;
   if (window.scrollY === 0) {
     if (prevY === 0) return;
@@ -28,29 +30,29 @@ scrollBar.addEventListener("click", (event) => {
   window.scrollTo({
     top: top
   });
-});
+}
 
 chrome.storage.local.get({
   width: 115,
-  color: "#dce2e8"
+  color: '#dce2e8'
 }, (options) => {
-  scrollBar.style.setProperty("--width", options.width + "px");
-  scrollBar.style.setProperty("--color", options.color);
+  scrollBar.style.setProperty('--width', options.width + 'px');
+  scrollBar.style.setProperty('--color', options.color);
 });
 
 function createScrollBar() {
-  const scrollBar = document.createElement("div");
+  const scrollBar = document.createElement('div');
   const shadowRoot = scrollBar.attachShadow({
-    mode: "closed"
+    mode: 'closed'
   });
-  const style = document.createElement("style");
+  const style = document.createElement('style');
   style.textContent = `
     :host {
       background: transparent none repeat scroll 0% 0% !important;
       border-radius: 0 !important;
       border-style: none !important;
       box-shadow: none !important;
-      cursor: pointer !important;
+      cursor: auto !important;
       height: 100% !important;
       margin: 0 !important;
       opacity: 0.5 !important;
@@ -64,8 +66,9 @@ function createScrollBar() {
     }
     :host(.over) {
       background-color: var(--color, #dce2e8) !important;
+      cursor: pointer !important;
       z-index: 9999 !important;
     }`;
-  shadowRoot.appendChild(style);
+  shadowRoot.append(style);
   return scrollBar;
 }
