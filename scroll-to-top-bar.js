@@ -16,12 +16,11 @@ scrollBar.addEventListener('mouseleave', (event) => {
   scrollBar.removeEventListener('click', onClick);
 });
 
-let prevY = 0;
-
 function onClick() {
+  let prevY = window.prevY;
   let top;
   if (window.scrollY === 0) {
-    if (prevY === 0) return;
+    if (!prevY) return;
     top = prevY;
   } else {
     prevY = window.scrollY;
@@ -30,6 +29,7 @@ function onClick() {
   window.scrollTo({
     top: top
   });
+  window.prevY = prevY;
 }
 
 chrome.storage.local.get({
