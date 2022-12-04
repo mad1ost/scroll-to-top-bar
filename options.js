@@ -7,7 +7,7 @@ function restoreOptions() {
 	chrome.storage.local.get({
 		width: 115,
 		color: '#dce2e8'
-	}, (options) => {
+	}).then((options) => {
 		document.querySelector('#width').value = options.width;
 		document.querySelector('#color').value = options.color;
 	});

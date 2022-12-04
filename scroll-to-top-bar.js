@@ -3,7 +3,7 @@
 chrome.storage.local.get({
 	width: 115,
 	color: '#dce2e8'
-}, (options) => {
+}).then((options) => {
 	const scrollBar = createScrollBar(options);
 	document.body.append(scrollBar);
 
