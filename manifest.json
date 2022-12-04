@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "Scroll to top bar",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Add scroll to top bar when hovering over a scrollbar of the page",
   "icons": {
     "32": "icons/icon-32.png",
@@ -12,8 +12,7 @@
     {
       "js": ["scroll-to-top-bar.js"],
       "matches": ["<all_urls>"],
-      "run_at": "document_end",
-      "all_frames": false
+      "run_at": "document_end"
     }
   ],
   "options_ui": {
