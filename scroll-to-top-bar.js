@@ -29,19 +29,19 @@ chrome.storage.local.get({
 		scrollBar.style.setProperty('--color', options.color);
 	});
 
-	let prevY = 0;
+	let savedY = 0;
 
 	function onClick() {
-		let top;
+		let newY;
 		if (window.scrollY === 0) {
-			if (prevY === 0) return;
-			top = prevY;
+			if (savedY === 0) return;
+			newY = savedY;
 		} else {
-			prevY = window.scrollY;
-			top = 0;
+			savedY = window.scrollY;
+			newY = 0;
 		}
 		window.scrollTo({
-			top: top
+			top: newY
 		});
 	}
 
@@ -73,7 +73,8 @@ chrome.storage.local.get({
 				background-color: var(--color, ${options.color}) !important;
 				cursor: pointer !important;
 				z-index: 9999 !important;
-			}`;
+			}
+		`;
 		shadowRoot.append(style);
 		return scrollBar;
 	}
