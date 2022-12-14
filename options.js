@@ -1,22 +1,23 @@
 'use strict';
 
+const form = document.forms[0];
 document.addEventListener('DOMContentLoaded', restoreOptions);
-document.querySelector('form').addEventListener('submit', saveOptions);
+form.addEventListener('submit', saveOptions);
 
 function restoreOptions() {
 	chrome.storage.local.get({
 		width: 115,
 		color: '#dce2e8'
 	}).then((options) => {
-		document.querySelector('#width').value = options.width;
-		document.querySelector('#color').value = options.color;
+		form['width'].value = options.width;
+		form['color'].value = options.color;
 	});
 }
 
 function saveOptions(event) {
 	chrome.storage.local.set({
-		width: document.querySelector('#width').value,
-		color: document.querySelector('#color').value
+		width: form['width'].value,
+		color: form['color'].value
 	});
 	event.preventDefault();
 }
