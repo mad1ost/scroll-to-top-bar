@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Scroll to top bar",
-	"version": "2.0.1",
+	"version": "2.0.2",
 	"description": "Add scroll to top bar when hovering over a scrollbar of the page",
 	"icons": {
 		"32": "icons/icon-32.png",

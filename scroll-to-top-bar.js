@@ -25,8 +25,8 @@ chrome.storage.local.get({
 		for (let key in changes) {
 			options[key] = changes[key].newValue;
 		}
-		scrollBar.style.setProperty('--width', options.width + 'px');
-		scrollBar.style.setProperty('--color', options.color);
+		scrollBar.style.setProperty('--scroll-to-top-bar-width', options.width + 'px');
+		scrollBar.style.setProperty('--scroll-to-top-bar-color', options.color);
 	});
 
 	let savedY = 0;
@@ -66,11 +66,11 @@ chrome.storage.local.get({
 				position: fixed !important;
 				right: 0 !important;
 				top: 0 !important;
-				width: var(--width, ${options.width}px) !important;
+				width: var(--scroll-to-top-bar-width, ${options.width}px) !important;
 				z-index: -1 !important;
 			}
 			:host(.over) {
-				background-color: var(--color, ${options.color}) !important;
+				background-color: var(--scroll-to-top-bar-color, ${options.color}) !important;
 				cursor: pointer !important;
 				z-index: 9999 !important;
 			}
