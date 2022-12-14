@@ -4,8 +4,34 @@ chrome.storage.local.get({
 	width: 115,
 	color: '#dce2e8'
 }).then((options) => {
-	const scrollBar = createScrollBar(options);
-	document.body.append(scrollBar);
+	const style = document.createElement('style');
+	style.textContent = `
+		#scroll-to-top-bar {
+			background: transparent none repeat scroll 0% 0%;
+			border-radius: 0;
+			border-style: none;
+			box-shadow: none;
+			cursor: auto;
+			height: 100%;
+			margin: 0;
+			opacity: 0.5;
+			overflow: visible;
+			padding: 0;
+			position: fixed;
+			right: 0;
+			top: 0;
+			width: var(--scroll-to-top-bar-width, ${options.width}px);
+			z-index: -1;
+		}
+		#scroll-to-top-bar.over {
+			background-color: var(--scroll-to-top-bar-color, ${options.color});
+			cursor: pointer;
+			z-index: 9999;
+		}
+	`;
+	const scrollBar = document.createElement('div');
+	scrollBar.id = 'scroll-to-top-bar';
+	document.body.append(style, scrollBar);
 
 	document.addEventListener('mouseover', (event) => {
 		if (event.target !== document.documentElement) return;
@@ -43,39 +69,5 @@ chrome.storage.local.get({
 		window.scrollTo({
 			top: newY
 		});
-	}
-
-	function createScrollBar(options) {
-		const scrollBar = document.createElement('div');
-		const shadowRoot = scrollBar.attachShadow({
-			mode: 'closed'
-		});
-		const style = document.createElement('style');
-		style.textContent = `
-			:host {
-				background: transparent none repeat scroll 0% 0% !important;
-				border-radius: 0 !important;
-				border-style: none !important;
-				box-shadow: none !important;
-				cursor: auto !important;
-				height: 100% !important;
-				margin: 0 !important;
-				opacity: 0.5 !important;
-				overflow: visible !important;
-				padding: 0 !important;
-				position: fixed !important;
-				right: 0 !important;
-				top: 0 !important;
-				width: var(--scroll-to-top-bar-width, ${options.width}px) !important;
-				z-index: -1 !important;
-			}
-			:host(.over) {
-				background-color: var(--scroll-to-top-bar-color, ${options.color}) !important;
-				cursor: pointer !important;
-				z-index: 9999 !important;
-			}
-		`;
-		shadowRoot.append(style);
-		return scrollBar;
 	}
 });
