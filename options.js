@@ -8,7 +8,7 @@ function restoreOptions() {
 	chrome.storage.local.get({
 		width: 115,
 		color: '#dce2e8'
-	}).then((options) => {
+	}, (options) => {
 		form['width'].value = options.width;
 		form['color'].value = options.color;
 	});

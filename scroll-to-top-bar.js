@@ -3,7 +3,7 @@
 chrome.storage.local.get({
 	width: 115,
 	color: '#dce2e8'
-}).then((options) => {
+}, (options) => {
 	const style = document.createElement('style');
 	style.textContent = `
 		#scroll-to-top-bar {
