@@ -29,9 +29,10 @@ chrome.storage.local.get({
 			z-index: 9999;
 		}
 	`;
+	document.head.append(style);
 	const scrollBar = document.createElement('div');
 	scrollBar.id = 'scroll-to-top-bar';
-	document.body.append(style, scrollBar);
+	document.body.append(scrollBar);
 
 	document.addEventListener('mouseover', (event) => {
 		if (event.target !== document.documentElement) return;
