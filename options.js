@@ -1,8 +1,6 @@
 'use strict';
 
 const form = document.forms[0];
-document.addEventListener('DOMContentLoaded', restoreOptions);
-form.addEventListener('submit', saveOptions);
 
 function restoreOptions() {
 	chrome.storage.local.get({
@@ -21,3 +19,7 @@ function saveOptions(event) {
 	});
 	event.preventDefault();
 }
+
+document.addEventListener('DOMContentLoaded', restoreOptions);
+form.addEventListener('submit', saveOptions);
+
