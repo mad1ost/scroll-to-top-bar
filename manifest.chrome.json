@@ -1,7 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Scroll to top bar",
-	"version": "3.0.1",
+	"version": "3.0.2",
 	"description": "Add scroll to top bar when hovering over a scrollbar of the page",
 	"homepage_url": "https://github.com/mad1ost/scroll-to-top-bar",
 	"icons": {
